@@ -10,4 +10,8 @@ import javax.transaction.Transactional;
 
 @Transactional
 public interface UserRepository extends CrudRepository<jtodos.domain.User, Long> {
+//    public Iterable<Person> findByName(String name);
+//
+//    @Query("select p from Person p where p.name = :name order by p.name")
+//    public Iterable<Person> findByNameUsingJPQL(@Param("name") String name);
 }
