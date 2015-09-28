@@ -1,10 +1,10 @@
-package com.test;
+package main.java.jtodos;
 
 /**
  * Created by yxfan on 9/24/15.
  * testing ...
  */
-public class Main {
+public class Application {
 
     public static void main (String[] args){
 
