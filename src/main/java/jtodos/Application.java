@@ -1,14 +1,16 @@
-package main.java.jtodos;
+package jtodos;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * Created by yxfan on 9/24/15.
- * testing ...
+ * Created by yxfan on 9/28/15.
  */
+
+@SpringBootApplication
 public class Application {
 
-    public static void main (String[] args){
-
-        System.out.printf("hi, v1");
-        System.out.println("args = " + "what happened !");
+    public static void main (String[] args) {
+        SpringApplication.run(Application.class, args);
     }
 }
