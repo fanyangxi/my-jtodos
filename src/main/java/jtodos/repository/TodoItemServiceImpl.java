@@ -1,19 +1,29 @@
 package jtodos.repository;
 
 import jtodos.domain.TodoItem;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 /**
  * Created by yxfan on 9/28/15.
  */
 
+@Component("todoItemService")
 @Transactional
 public class TodoItemServiceImpl implements TodoItemService {
 
-    private final TodoItemRepository todoItemRepo;
+    private TodoItemRepository todoItemRepo;
 
+    @PersistenceContext
+    private EntityManager em;
+
+    @Autowired
     public TodoItemServiceImpl(TodoItemRepository todoItemRepo) {
         this.todoItemRepo = todoItemRepo;
     }
@@ -25,7 +35,9 @@ public class TodoItemServiceImpl implements TodoItemService {
 
     @Override
     public TodoItem GetItem(String name) {
-        return null;
+        TypedQuery<TodoItem> query = em.createQuery("select t from todoitems t where t.name = ?1", TodoItem.class);
+        query.setParameter(1, name);
+        return query.getResultList().get(0);
     }
 
     @Override
@@ -34,8 +46,11 @@ public class TodoItemServiceImpl implements TodoItemService {
     }
 
     @Override
-    public Iterable<TodoItem> QueryItems(String searchText) {
-        return null;
+    public Iterable<TodoItem> QueryItems(String userid) {
+
+        TypedQuery<TodoItem> query = em.createQuery("select t from todoitems t where t.userid = ?1", TodoItem.class);
+        query.setParameter(1, userid);
+        return query.getResultList();
     }
 
     @Override

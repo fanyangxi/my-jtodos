@@ -1,5 +1,6 @@
 package jtodos.web;
 
+import jtodos.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,10 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserServiceController {
 
     @Autowired
-    private jtodos.repository.UserRepository hotelRepo;
+    private jtodos.repository.UserService userService;
 
     @RequestMapping("/")
-    public String index () {
+    public String index() {
 
 //        // Retrive all
 //        Iterable<User> all = hotelRepo.findAll();
@@ -26,4 +27,9 @@ public class UserServiceController {
         return "hi, ...x";
     }
 
+    @RequestMapping("/user-info")
+    public User GetUserInfo(long id) {
+        User result = this.userService.GetUser(id);
+        return result;
+    }
 }

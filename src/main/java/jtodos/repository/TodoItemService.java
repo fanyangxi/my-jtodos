@@ -14,7 +14,7 @@ public interface TodoItemService {
 
     Iterable<TodoItem> QueryItems ();
 
-    Iterable<TodoItem> QueryItems (String searchText);
+    Iterable<TodoItem> QueryItems (String userid);
 
     void Create (TodoItem newItem);
 

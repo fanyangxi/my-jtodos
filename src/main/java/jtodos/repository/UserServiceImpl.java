@@ -2,6 +2,7 @@ package jtodos.repository;
 
 import jtodos.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
 import javax.transaction.Transactional;
@@ -10,10 +11,11 @@ import javax.transaction.Transactional;
  * Created by yxfan on 9/28/15.
  */
 
+@Component("userService")
 @Transactional
 public class UserServiceImpl implements UserService {
 
-    private final UserRepository userRepo;
+    private UserRepository userRepo;
 
     @Autowired
     public UserServiceImpl(UserRepository userRepo) {
