@@ -10,17 +10,17 @@ import java.util.Iterator;
 
 public interface UserService {
 
-    User GetUser(long id);
+    User getUser(long id);
 
-    User GetUser(String userName);
+    User getUser(String userName);
 
-    Iterable<User> QueryUsers();
+    Iterable<User> queryUsers();
 
-    Iterable<User> QueryUsers(String searchText);
+    Iterable<User> queryUsers(String searchText);
 
-    void Create (User newItem);
+    void create(User newItem);
 
-    void Update (User updatedItem);
+    void update(User updatedItem);
 
-    void Delete (long id);
+    void delete(long id);
 }

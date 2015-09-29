@@ -23,28 +23,28 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User GetUser(long id) {
+    public User getUser(long id) {
         return this.userRepo.findOne(id);
     }
 
     @Override
-    public User GetUser(String userName) {
+    public User getUser(String userName) {
         Assert.notNull(userName, "The filter user-name cannot be null");
         return null;
     }
 
     @Override
-    public Iterable<User> QueryUsers() {
+    public Iterable<User> queryUsers() {
         return this.userRepo.findAll();
     }
 
     @Override
-    public Iterable<User> QueryUsers(String searchText) {
+    public Iterable<User> queryUsers(String searchText) {
         return null;
     }
 
     @Override
-    public void Create(User newItem) {
+    public void create(User newItem) {
 
         Assert.notNull(newItem);
         Assert.notNull(newItem.getName());
@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void Update(User updatedItem) {
+    public void update(User updatedItem) {
 
         Assert.notNull(updatedItem);
         Assert.notNull(updatedItem.getName());
@@ -66,7 +66,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void Delete(long id) {
+    public void delete(long id) {
 
         User theItem = this.userRepo.findOne(id);
         if (theItem == null) {

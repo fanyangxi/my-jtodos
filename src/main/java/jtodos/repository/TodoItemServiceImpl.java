@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
+import java.util.List;
 
 /**
  * Created by yxfan on 9/28/15.
@@ -29,32 +30,34 @@ public class TodoItemServiceImpl implements TodoItemService {
     }
 
     @Override
-    public TodoItem GetItem(long id) {
+    public TodoItem getItem(long id) {
         return this.todoItemRepo.findOne(id);
     }
 
     @Override
-    public TodoItem GetItem(String name) {
-        TypedQuery<TodoItem> query = em.createQuery("select t from todoitems t where t.name = ?1", TodoItem.class);
+    public TodoItem getItem(String name) {
+        TypedQuery<TodoItem> query = em.createQuery("select t from TodoItem t where t.name = ?1", TodoItem.class);
         query.setParameter(1, name);
         return query.getResultList().get(0);
     }
 
     @Override
-    public Iterable<TodoItem> QueryItems() {
+    public Iterable<TodoItem> queryItems() {
         return this.todoItemRepo.findAll();
     }
 
     @Override
-    public Iterable<TodoItem> QueryItems(String userid) {
+    public Iterable<TodoItem> queryItems(long userid) {
 
-        TypedQuery<TodoItem> query = em.createQuery("select t from todoitems t where t.userid = ?1", TodoItem.class);
+        TypedQuery<TodoItem> query = em.createQuery("select t from TodoItem t where t.userid = ?1", TodoItem.class);
         query.setParameter(1, userid);
         return query.getResultList();
+
+//        return this.todoItemRepo.findUserSpecificTodoItems(userid);
     }
 
     @Override
-    public void Create(TodoItem newItem) {
+    public void create(TodoItem newItem) {
 
         Assert.notNull(newItem);
         Assert.notNull(newItem.getName());
@@ -64,7 +67,7 @@ public class TodoItemServiceImpl implements TodoItemService {
     }
 
     @Override
-    public void Update(TodoItem updatedItem) {
+    public void update(TodoItem updatedItem) {
 
         Assert.notNull(updatedItem);
         Assert.notNull(updatedItem.getName());
@@ -77,7 +80,7 @@ public class TodoItemServiceImpl implements TodoItemService {
     }
 
     @Override
-    public void Delete(long id) {
+    public void delete(long id) {
 
         TodoItem theItem = this.todoItemRepo.findOne(id);
         if (theItem == null) {

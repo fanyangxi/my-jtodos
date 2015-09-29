@@ -2,23 +2,25 @@ package jtodos.repository;
 
 import jtodos.domain.TodoItem;
 
+import java.util.List;
+
 /**
  * Created by yxfan on 9/28/15.
  */
 
 public interface TodoItemService {
 
-    TodoItem GetItem (long id);
+    TodoItem getItem(long id);
 
-    TodoItem GetItem (String name);
+    TodoItem getItem(String name);
 
-    Iterable<TodoItem> QueryItems ();
+    Iterable<TodoItem> queryItems();
 
-    Iterable<TodoItem> QueryItems (String userid);
+    Iterable<TodoItem> queryItems(long userid);
 
-    void Create (TodoItem newItem);
+    void create(TodoItem newItem);
 
-    void Update (TodoItem updatedItem);
+    void update(TodoItem updatedItem);
 
-    void Delete (long id);
+    void delete(long id);
 }
