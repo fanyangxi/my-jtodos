@@ -1,0 +1,10 @@
+/*!
+ * my site - v3.0.1 - 2015-07-17
+ * Copyright (c) 2015 ; License: MIT
+ */
+
+.gridStyle {
+    border: 1px solid rgb(212,212,212);
+    max-width: 600px;
+    height: 300px
+}

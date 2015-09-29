@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" ng-app="myApp">
+<head>
+    <title>content from the template, index</title>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link rel="stylesheet" type="text/css" href="../css/site.css" />
+    <link rel="stylesheet" type="text/css" href="../angular.ui-grid/ui-grid.css" />
+
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
+    <script src="../angular.ui-grid/ui-grid.js"></script>
+    <script src="../js/web-app.js"></script>
+</head>
+<body>
+<p th:text="'g Hello, ' + ${name} + '!'"/>
+<div ng-controller="Hello">
+    <p>The ID is {{todoitem.id}}</p>
+    <p>The content is {{todoitem.content}}</p>
+</div>
+<p>======================================</p>
+<div ng-controller="loadTodoitems">
+    <div class="gridStyle" ui-grid="{ data: todos }"></div>
+</div>
+</body>
+</html>
