@@ -2,6 +2,7 @@ package jtodos.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 /**
  * Created by yxfan on 9/28/15.
@@ -9,7 +10,9 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "todoitems")
-public class TodoItem {
+public class TodoItem implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,7 +28,8 @@ public class TodoItem {
     public TodoItem() {
     }
 
-    public TodoItem(String name, String content) {
+    public TodoItem(long userid, String name, String content) {
+        this.userid = userid;
         this.name = name;
         this.content = content;
     }
@@ -34,28 +38,28 @@ public class TodoItem {
         return id;
     }
 
-    public long getUserid() {
-        return userid;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
     public void setId(long id) {
         this.id = id;
+    }
+
+    public long getUserid() {
+        return userid;
     }
 
     public void setUserid(long userid) {
         this.userid = userid;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getContent() {
+        return content;
     }
 
     public void setContent(String content) {
