@@ -20,4 +20,6 @@ public interface TodoItemRepository extends CrudRepository<jtodos.domain.TodoIte
 //            + "where t.userid = ? "
 //            + "order by t.name ASC")
 //    public List<TodoItem> findUserSpecificTodoItems(long userId);
+
+//    Iterable<TodoItem> findUserSpecificTodoItems(long userId);
 }
