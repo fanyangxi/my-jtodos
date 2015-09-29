@@ -10,7 +10,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "todoitems")
-public class TodoItem implements Serializable {
+public class Todoitem implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -25,10 +25,10 @@ public class TodoItem implements Serializable {
 
     private String content;
 
-    public TodoItem() {
+    public Todoitem() {
     }
 
-    public TodoItem(long userid, String name, String content) {
+    public Todoitem(long userid, String name, String content) {
         this.userid = userid;
         this.name = name;
         this.content = content;
