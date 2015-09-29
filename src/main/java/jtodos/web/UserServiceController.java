@@ -1,5 +1,6 @@
 package jtodos.web;
 
+import jtodos.domain.TodoItem;
 import jtodos.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +16,9 @@ public class UserServiceController {
     @Autowired
     private jtodos.repository.UserService userService;
 
-    @RequestMapping("/")
+    @Autowired
+    private jtodos.repository.TodoItemService todoItemService;
+
     public String index() {
 
 //        // Retrive all
@@ -29,7 +32,19 @@ public class UserServiceController {
 
     @RequestMapping("/user-info")
     public User GetUserInfo(long id) {
-        User result = this.userService.GetUser(id);
+        User result = this.userService.getUser(id);
         return result;
+    }
+
+    @RequestMapping("/todo")
+    public TodoItem GetTodoItem(long id) {
+        TodoItem result = this.todoItemService.getItem(id);
+        return result;
+    }
+
+    @RequestMapping("/user-todos")
+    public Iterable<TodoItem> GetUserSpecificTodoItems(long userid) {
+        Iterable<TodoItem> results = this.todoItemService.queryItems(userid);
+        return results;
     }
 }
