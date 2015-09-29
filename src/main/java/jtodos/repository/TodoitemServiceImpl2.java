@@ -1,6 +1,6 @@
 package jtodos.repository;
 
-import jtodos.domain.TodoItem;
+import jtodos.domain.Todoitem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
@@ -9,84 +9,83 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
-import java.util.List;
 
 /**
  * Created by yxfan on 9/28/15.
  */
 
-@Component("todoItemService")
+@Component("todoitemService")
 @Transactional
-public class TodoItemServiceImpl implements TodoItemService {
+public class TodoitemServiceImpl implements TodoitemService {
 
-    private TodoItemRepository todoItemRepo;
+    private TodoitemRepository todoitemRepo;
 
     @PersistenceContext
     private EntityManager em;
 
     @Autowired
-    public TodoItemServiceImpl(TodoItemRepository todoItemRepo) {
-        this.todoItemRepo = todoItemRepo;
+    public TodoitemServiceImpl(TodoitemRepository todoitemRepo) {
+        this.todoitemRepo = todoitemRepo;
     }
 
     @Override
-    public TodoItem getItem(long id) {
-        return this.todoItemRepo.findOne(id);
+    public Todoitem getItem(long id) {
+        return this.todoitemRepo.findOne(id);
     }
 
     @Override
-    public TodoItem getItem(String name) {
-        TypedQuery<TodoItem> query = em.createQuery("select t from TodoItem t where t.name = ?1", TodoItem.class);
+    public Todoitem getItem(String name) {
+        TypedQuery<Todoitem> query = em.createQuery("select t from Todoitem t where t.name = ?1", Todoitem.class);
         query.setParameter(1, name);
         return query.getResultList().get(0);
     }
 
     @Override
-    public Iterable<TodoItem> queryItems() {
-        return this.todoItemRepo.findAll();
+    public Iterable<Todoitem> queryItems() {
+        return this.todoitemRepo.findAll();
     }
 
     @Override
-    public Iterable<TodoItem> queryItems(long userid) {
+    public Iterable<Todoitem> queryItems(long userid) {
 
-        TypedQuery<TodoItem> query = em.createQuery("select t from TodoItem t where t.userid = ?1", TodoItem.class);
+        TypedQuery<Todoitem> query = em.createQuery("select t from Todoitem t where t.userid = ?1", Todoitem.class);
         query.setParameter(1, userid);
         return query.getResultList();
 
-//        return this.todoItemRepo.findUserSpecificTodoItems(userid);
+//        return this.todoitemRepo.findUserSpecificTodoitems(userid);
     }
 
     @Override
-    public void create(TodoItem newItem) {
+    public void create(Todoitem newItem) {
 
         Assert.notNull(newItem);
         Assert.notNull(newItem.getName());
         Assert.notNull(newItem.getUserid());
 
-        this.todoItemRepo.save(newItem);
+        this.todoitemRepo.save(newItem);
     }
 
     @Override
-    public void update(TodoItem updatedItem) {
+    public void update(Todoitem updatedItem) {
 
         Assert.notNull(updatedItem);
         Assert.notNull(updatedItem.getName());
         Assert.notNull(updatedItem.getUserid());
 
-        TodoItem theItem = this.todoItemRepo.findOne(updatedItem.getId());
+        Todoitem theItem = this.todoitemRepo.findOne(updatedItem.getId());
         theItem.setName(updatedItem.getName());
         theItem.setContent(updatedItem.getContent());
-        this.todoItemRepo.save(theItem);
+        this.todoitemRepo.save(theItem);
     }
 
     @Override
     public void delete(long id) {
 
-        TodoItem theItem = this.todoItemRepo.findOne(id);
+        Todoitem theItem = this.todoitemRepo.findOne(id);
         if (theItem == null) {
             return;
         }
 
-        this.todoItemRepo.delete(id);
+        this.todoitemRepo.delete(id);
     }
 }
