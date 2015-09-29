@@ -51,8 +51,6 @@ public class TodoitemServiceImpl implements TodoitemService {
         TypedQuery<Todoitem> query = em.createQuery("select t from Todoitem t where t.userid = ?1", Todoitem.class);
         query.setParameter(1, userid);
         return query.getResultList();
-
-//        return this.todoitemRepo.findUserSpecificTodoitems(userid);
     }
 
     @Override
