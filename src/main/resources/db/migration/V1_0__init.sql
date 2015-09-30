@@ -1,0 +1,1 @@
+COMMENT ON DATABASE postgres IS 'default administrative connection database, also for my training project';

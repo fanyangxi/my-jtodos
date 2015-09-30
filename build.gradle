@@ -33,7 +33,7 @@ flyway {
     schemas = ['public']
     baselineOnMigrate = true
     baselineVersion = 0
-    baselineDescription = "Let's go!"
+    baselineDescription = "Base line description, let's go!"
 }
 
 dependencies {
