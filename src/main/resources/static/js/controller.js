@@ -9,9 +9,15 @@ var app = angular.module('myapp.controllers', ['myapp.services']);
 app.controller('TodoitemsController', ['$scope', 'TodoitemsFactory', 'TodoitemFactory', '$location', '$window', '$timeout',
     function ($scope, TodoitemsFactory, TodoitemFactory, $location, $window, $timeout) {
 
+        $scope.theUserId = '2';
+
         // callback for ng-click 'create':
         $scope.create = function () {
-            //TodoitemFactory.create(***);
+
+            if(!$scope.currentTodoitem)
+            {
+                return;
+            }
 
             if(!$scope.currentTodoitem.userid)
             {
@@ -25,13 +31,13 @@ app.controller('TodoitemsController', ['$scope', 'TodoitemsFactory', 'TodoitemFa
                 return;
             }
 
-            $scope.currentTodoitem.userid = '2';
+            $scope.currentTodoitem.userid = $scope.theUserId;
             TodoitemsFactory.create($scope.currentTodoitem);
 
             // $location.path('/todoitem-creation');
             // todo: using timeout here may not be a good idea
             $timeout(function() {
-                $scope.todoitems = TodoitemsFactory.query({ userid: '2' });
+                $scope.todoitems = TodoitemsFactory.query({ userid: $scope.theUserId });
             }, 500);
         };
 
@@ -39,7 +45,7 @@ app.controller('TodoitemsController', ['$scope', 'TodoitemsFactory', 'TodoitemFa
         $scope.editing = function (id, todoitem) {
             // load item data to data-form
             // $location.path('/todoitem-detail/' + id);
-            // $scope.todoitems = TodoitemsFactory.query({ userid: '2' });
+            // $scope.todoitems = TodoitemsFactory.query({ userid: $scope.theUserId });
             $scope.currentTodoitem = todoitem;
         };
 
@@ -48,19 +54,22 @@ app.controller('TodoitemsController', ['$scope', 'TodoitemsFactory', 'TodoitemFa
             // alert('update');
             // $location.path('/todoitem-detail/' + id);
             // TodoitemFactory.update(todoitem);
+            // $window.location.href = $window.location.href;
             TodoitemFactory.update($scope.currentTodoitem);
-            $window.location.href = $window.location.href;
+            $timeout(function() {
+                $scope.todoitems = TodoitemsFactory.query({ userid: $scope.theUserId });
+            }, 500);
         };
 
         // callback for ng-click 'delete':
         $scope.delete = function (id) {
             var retVal = confirm("Do you want to delete item: (" + id + ")?");
             if (retVal == true) {
-                // $scope.todoitems = TodoitemsFactory.query({ userid: '2' });
+                // $scope.todoitems = TodoitemsFactory.query({ userid: $scope.theUserId });
                 // $window.location.href = $window.location.href;
                 TodoitemFactory.delete({ userid: '2', id: id });
                 $timeout(function() {
-                    $scope.todoitems = TodoitemsFactory.query({ userid: '2' });
+                    $scope.todoitems = TodoitemsFactory.query({ userid: $scope.theUserId });
                 }, 500);
                 return true;
             } else {
@@ -68,13 +77,12 @@ app.controller('TodoitemsController', ['$scope', 'TodoitemsFactory', 'TodoitemFa
             }
         };
 
-        $scope.todoitems = TodoitemsFactory.query({ userid: '2' });
+        $scope.todoitems = TodoitemsFactory.query({ userid: $scope.theUserId });
     }]
 );
 
 app.controller('TodoitemDetailController', ['$scope', 'TodoitemsFactory', 'TodoitemFactory', '$location',
     function ($scope, TodoitemsFactory, TodoitemFactory, $location) {
-
     }]
 );
 
@@ -113,9 +121,9 @@ app.controller('TodoitemDetailController', ['$scope', 'TodoitemsFactory', 'Todoi
 //     };
 //});
 
-app.controller('Hello', function ($scope, $http) {
+//app.controller('Hello', function ($scope, $http) {
 //    $http.get('../todo?id=1').
 //        success(function(data) {
 //            $scope.todoitem = data;
 //        });
-});
+//});

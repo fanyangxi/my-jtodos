@@ -29,6 +29,7 @@ public class TodoitemServiceController {
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void createTodoitem(@PathVariable long userid, @RequestBody Todoitem newItem) {
+        newItem.setId(0);
         newItem.setUserid(userid);
         this.todoitemService.create(newItem);
     }

@@ -21,10 +21,11 @@
     <script src="js/controller.js"></script>
 </head>
 <body>
-<p>Some content v3</p>
 
 <div ng-controller="TodoitemsController">
+    <p>Todos for user: {{theUserId}} </p>
     <!--create / update form-->
+    <hr />
     <table>
         <tbody> <!-- This table is to enter data-->
         <tr>
@@ -40,12 +41,17 @@
             <input type="text" ng-model="currentTodoitem.content"/></td>
         </tr>
         <tr>
-            <td><input type="button" ng-click="create()" value="Save"/></td>
-            <td><input type="button" ng-click="update()" value="Update"/></td>
+            <td></td>
+            <td>
+                <input type="button" ng-click="update()" value="Update"/>
+                <input type="button" ng-click="create()" value="Save as New"/>
+            </td>
         </tr>
         </tbody>
     </table>
 
+    <br />
+    <hr />
     <!--items list-->
     <table> <!--This table is to display the data-->
         <thead>
@@ -60,7 +66,7 @@
             <td ng-bind="todoitem.id"></td>
             <td ng-bind="todoitem.name"></td>
             <td ng-bind="todoitem.content"></td>
-            <td><input type="button" ng-click="editing(todoitem.id, todoitem)" value="Edit"/></td> //todoitems.indexOf(todoitem)
+            <td><input type="button" ng-click="editing(todoitem.id, todoitem)" value="Edit"/></td>
             <td><input type="button" ng-click="delete(todoitem.id)" value="Delete"/></td>
         </tr>
         </tbody>
