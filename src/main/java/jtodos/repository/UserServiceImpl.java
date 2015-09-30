@@ -60,8 +60,8 @@ public class UserServiceImpl implements UserService {
 
         User theItem = this.userRepo.findOne(updatedItem.getId());
         theItem.setName(updatedItem.getName());
-        theItem.setAddress(updatedItem.getAddress());
-        theItem.setZip(updatedItem.getZip());
+        theItem.setGender(updatedItem.getGender());
+        theItem.setBio(updatedItem.getBio());
         this.userRepo.save(theItem);
     }
 

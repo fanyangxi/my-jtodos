@@ -12,7 +12,7 @@ import java.io.Serializable;
  */
 
 @Entity
-@Table(name = "hotels")
+@Table(name = "users")
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -23,18 +23,18 @@ public class User implements Serializable {
 
     private String name;
 
-    private String address;
+    private String gender;
 
-    private String zip;
+    private String bio;
 
     // Constructor
     public User() {
     }
 
-    public User(String name, String address, String zip) {
+    public User(String name, String gender, String bio) {
         this.name = name;
-        this.address = address;
-        this.zip = zip;
+        this.gender = gender;
+        this.bio = bio;
     }
 
     public long getId() {
@@ -53,19 +53,19 @@ public class User implements Serializable {
         this.name = name;
     }
 
-    public String getAddress() {
-        return address;
+    public String getGender() {
+        return gender;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
-    public String getZip() {
-        return zip;
+    public String getBio() {
+        return bio;
     }
 
-    public void setZip(String zip) {
-        this.zip = zip;
+    public void setBio(String bio) {
+        this.bio = bio;
     }
 }

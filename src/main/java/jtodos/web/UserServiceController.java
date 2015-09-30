@@ -4,6 +4,7 @@ import jtodos.domain.Todoitem;
 import jtodos.domain.User;
 import jtodos.repository.TodoitemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -17,24 +18,25 @@ public class UserServiceController {
     @Autowired
     private jtodos.repository.UserService userService;
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public Iterable<User> getAllUsers() {
         return this.userService.queryUsers();
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void createUser(@RequestBody User newUser) {
         this.userService.create(newUser);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public User getUser(@PathVariable long id) {
         User result = this.userService.getUser(id);
         return result;
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public void updateUser(@RequestBody User updatedUser) {
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void updateUser(@PathVariable long id, @RequestBody User updatedUser) {
+        updatedUser.setId(id);
         this.userService.update(updatedUser);
     }
 
