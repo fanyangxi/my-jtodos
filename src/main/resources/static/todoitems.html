@@ -23,32 +23,30 @@
 <body>
 <p>Some content v3</p>
 
-<!--create / update form-->
-<!--<div ng-controller="TodoitemDetailController">-->
-    <!--<table>-->
-        <!--<tbody> &lt;!&ndash; This table is to enter data&ndash;&gt;-->
-        <!--<tr>-->
-            <!--<td>Enter User ID: </td><td>-->
-            <!--<input type="text" ng-model="userid"/></td>-->
-        <!--</tr>-->
-        <!--<tr>-->
-            <!--<td>Enter Name: </td><td>-->
-            <!--<input type="text" ng-model="name"/></td>-->
-        <!--</tr>-->
-        <!--<tr>-->
-            <!--<td>Enter Content: </td><td>-->
-            <!--<input type="text" ng-model="content"/></td>-->
-        <!--</tr>-->
-        <!--<tr>-->
-            <!--<td><input type="button" ng-click="createItem()" value="Save"/></td>-->
-            <!--<td><input type="button" ng-click="updateItem(id,name,desg)" value="Update"/></td>-->
-        <!--</tr>-->
-        <!--</tbody>-->
-    <!--</table>-->
-<!--</div>-->
+<div ng-controller="TodoitemsController">
+    <!--create / update form-->
+    <table>
+        <tbody> <!-- This table is to enter data-->
+        <tr>
+            <td>Enter User ID: </td><td>
+            <input type="text" ng-model="currentTodoitem.userid"/></td>
+        </tr>
+        <tr>
+            <td>Enter Name: </td><td>
+            <input type="text" ng-model="currentTodoitem.name"/></td>
+        </tr>
+        <tr>
+            <td>Enter Content: </td><td>
+            <input type="text" ng-model="currentTodoitem.content"/></td>
+        </tr>
+        <tr>
+            <td><input type="button" ng-click="create()" value="Save"/></td>
+            <td><input type="button" ng-click="update()" value="Update"/></td>
+        </tr>
+        </tbody>
+    </table>
 
-<!--items list-->
-<div ng-controller="TodoitemListController">
+    <!--items list-->
     <table> <!--This table is to display the data-->
         <thead>
         <tr>
@@ -62,7 +60,7 @@
             <td ng-bind="todoitem.id"></td>
             <td ng-bind="todoitem.name"></td>
             <td ng-bind="todoitem.content"></td>
-            <td><input type="button" ng-click="edit(todoitem.id, todoitem)" value="Edit"/></td> //todoitems.indexOf(todoitem)
+            <td><input type="button" ng-click="editing(todoitem.id, todoitem)" value="Edit"/></td> //todoitems.indexOf(todoitem)
             <td><input type="button" ng-click="delete(todoitem.id)" value="Delete"/></td>
         </tr>
         </tbody>
