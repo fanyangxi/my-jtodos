@@ -11,6 +11,7 @@
     <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-resource.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-route.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-cookies.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-sanitize.min.js"></script>
     <script src="angular.ui-grid/ui-grid.js"></script>
@@ -61,8 +62,8 @@
             <td ng-bind="todoitem.id"></td>
             <td ng-bind="todoitem.name"></td>
             <td ng-bind="todoitem.content"></td>
-            <td><input type="button" ng-click="edit(todoitem, todoitems.indexOf(todoitem))" value="Edit"/></td>
-            <td><input type="button" ng-click="del(todoitems.indexOf(todoitem))" value="Delete"/></td>
+            <td><input type="button" ng-click="edit(todoitem.id, todoitem)" value="Edit"/></td> //todoitems.indexOf(todoitem)
+            <td><input type="button" ng-click="delete(todoitem.id)" value="Delete"/></td>
         </tr>
         </tbody>
     </table>

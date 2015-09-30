@@ -31,7 +31,7 @@ services.factory('TodoitemsFactory', function($resource) {
 services.factory('TodoitemFactory', function($resource) {
     return $resource('/:userid/todoitems/:id', {}, {
         show: { method: 'GET', isArray: 'True', params: { userid: '@userid', id: '@id' } },
-        update: { method: 'POST', params: { userid: '@userid', id: '@id' } },
+        update: { method: 'PUT', params: { userid: '@userid', id: '@id' } },
         delete: { method: 'DELETE', params: { userid: '@userid', id: '@id' } }
     })
 });

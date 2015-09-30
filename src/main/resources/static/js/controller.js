@@ -6,20 +6,22 @@
 
 var app = angular.module('myapp.controllers', ['myapp.services']);
 
-app.controller('TodoitemListController', ['$scope', 'TodoitemsFactory', 'TodoitemFactory', '$location',
-    function ($scope, TodoitemsFactory, TodoitemFactory, $location) {
+app.controller('TodoitemListController', ['$scope', 'TodoitemsFactory', 'TodoitemFactory', '$location', '$window',
+    function ($scope, TodoitemsFactory, TodoitemFactory, $location, $window) {
 
         // callback for ng-click 'edit':
-        $scope.edit = function (id) {
-            alert('edit');
-            $location.path('/todoitem-detail/' + id);
+        $scope.edit = function (id, todoitem) {
+            // $location.path('/todoitem-detail/' + id);
+            TodoitemFactory.update(todoitem);
+            // $scope.todoitems = TodoitemsFactory.query({ userid: '2' });
+            $window.location.href = $window.location.href;
         };
 
         // callback for ng-click 'delete':
         $scope.delete = function (id) {
-            alert('delete');
-            TodoitemFactory.delete({ id: id });
-            $scope.todoitems = TodoitemFactory.query();
+            TodoitemFactory.delete({ userid: '2', id: id });
+            // $scope.todoitems = TodoitemsFactory.query({ userid: '2' });
+            $window.location.href = $window.location.href;
         };
 
         // callback for ng-click 'create':
