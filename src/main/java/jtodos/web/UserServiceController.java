@@ -4,10 +4,7 @@ import jtodos.domain.Todoitem;
 import jtodos.domain.User;
 import jtodos.repository.TodoitemService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by yxfan on 9/28/15.
@@ -26,7 +23,7 @@ public class UserServiceController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public void createUser(User newUser) {
+    public void createUser(@RequestBody User newUser) {
         this.userService.create(newUser);
     }
 
@@ -37,7 +34,7 @@ public class UserServiceController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public void updateUser(User updatedUser) {
+    public void updateUser(@RequestBody User updatedUser) {
         this.userService.update(updatedUser);
     }
 

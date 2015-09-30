@@ -1,12 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="myapp.controllers">
 <head>
-    <meta charset="UTF-8"></meta>
+    <meta charset="UTF-8"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
     <title>my view v2</title>
+
+    <link rel="stylesheet" type="text/css" href="css/site.css"/>
+    <link rel="stylesheet" type="text/css" href="angular.ui-grid/ui-grid.css"/>
+
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-resource.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-cookies.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-sanitize.min.js"></script>
+    <script src="angular.ui-grid/ui-grid.js"></script>
+
+    <script src="js/app.js"></script>
+    <script src="js/service.js"></script>
+    <script src="js/controller.js"></script>
 </head>
 <body>
-<p>some content v3</p>
+<p>Some content v3</p>
 
+<!--create / update form-->
+<!--<div ng-controller="TodoitemDetailController">-->
+    <!--<table>-->
+        <!--<tbody> &lt;!&ndash; This table is to enter data&ndash;&gt;-->
+        <!--<tr>-->
+            <!--<td>Enter User ID: </td><td>-->
+            <!--<input type="text" ng-model="userid"/></td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+            <!--<td>Enter Name: </td><td>-->
+            <!--<input type="text" ng-model="name"/></td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+            <!--<td>Enter Content: </td><td>-->
+            <!--<input type="text" ng-model="content"/></td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+            <!--<td><input type="button" ng-click="createItem()" value="Save"/></td>-->
+            <!--<td><input type="button" ng-click="updateItem(id,name,desg)" value="Update"/></td>-->
+        <!--</tr>-->
+        <!--</tbody>-->
+    <!--</table>-->
+<!--</div>-->
+
+<!--items list-->
+<div ng-controller="TodoitemListController">
+    <table> <!--This table is to display the data-->
+        <thead>
+        <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Designation</td>
+        </tr>
+        </thead>
+        <tbody ng-repeat="todoitem in todoitems">
+        <tr>
+            <td ng-bind="todoitem.id"></td>
+            <td ng-bind="todoitem.name"></td>
+            <td ng-bind="todoitem.content"></td>
+            <td><input type="button" ng-click="edit(todoitem, todoitems.indexOf(todoitem))" value="Edit"/></td>
+            <td><input type="button" ng-click="del(todoitems.indexOf(todoitem))" value="Delete"/></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--<div ng-controller="loadTodoitems">-->
+<!--<div class="gridStyle" ui-grid="{ data: todos }"></div>-->
+<!--</div>-->
 </body>
 </html>
